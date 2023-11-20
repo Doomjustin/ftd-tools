@@ -10,6 +10,7 @@ add_library(FTD_TOOLS
         ${TOOLS_INCLUDE_DIR}/ftd/ThreadPool.h
         ${TOOLS_INCLUDE_DIR}/ftd/Timer.h
         ${TOOLS_INCLUDE_DIR}/ftd/Log.h
+        ${TOOLS_INCLUDE_DIR}/ftd/Numeric.h
         ThreadPool.cpp
         Log.cpp
         SpdLogger.h
