@@ -10,6 +10,12 @@ Logger* Logger::get()
     return &logger;
 }
 
+std::unique_ptr<Logger> Logger::make(const std::string& name)
+{
+    return std::make_unique<SpdLogger>(name);
+}
+
+
 namespace log {
 
 void pattern(const std::string& fmt)

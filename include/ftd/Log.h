@@ -19,6 +19,7 @@ enum class LogLevel {
 class Logger {
 public:
     static Logger* get();
+    static std::unique_ptr<Logger> make(const std::string& name);
 
 public:
     virtual ~Logger() = default;
@@ -45,36 +46,37 @@ void pattern(const std::string& fmt);
 void level(LogLevel level);
 
 template<typename... T>
-void error(std::format_string<T...> std, T&&... args)
+void error(std::format_string<T...> fmt, T&&... args)
 {
-    Logger::get()->error(std::format(std, std::forward<T>(args)...));
+    Logger::get()->error(std::format(fmt, std::forward<T>(args)...));
 }
 
 template<typename... T>
-void warning(std::format_string<T...> std, T&&... args)
+void warning(std::format_string<T...> fmt, T&&... args)
 {
-    Logger::get()->warning(std::format(std, std::forward<T>(args)...));
+    Logger::get()->warning(std::format(fmt, std::forward<T>(args)...));
 }
 
 template<typename... T>
-void debug(std::format_string<T...> std, T&&... args)
+void debug(std::format_string<T...> fmt, T&&... args)
 {
-    Logger::get()->debug(std::format(std, std::forward<T>(args)...));
+    Logger::get()->debug(std::format(fmt, std::forward<T>(args)...));
 }
 
 template<typename... T>
-void info(std::format_string<T...> std, T&&... args)
+void info(std::format_string<T...> fmt, T&&... args)
 {
-    Logger::get()->info(std::format(std, std::forward<T>(args)...));
+    Logger::get()->info(std::format(fmt, std::forward<T>(args)...));
 }
 
 template<typename... T>
-void trace(std::format_string<T...> std, T&&... args)
+void trace(std::format_string<T...> fmt, T&&... args)
 {
-    Logger::get()->trace(std::format(std, std::forward<T>(args)...));
+    Logger::get()->trace(std::format(fmt, std::forward<T>(args)...));
 }
 
 } // namespace ftd::log
+
 } // namespace ftd
 
 #endif // FTD_TOOLS_LOG_H

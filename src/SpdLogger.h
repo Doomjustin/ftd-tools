@@ -12,6 +12,7 @@ namespace ftd {
 class SpdLogger: public Logger {
 public:
     SpdLogger();
+    explicit SpdLogger(const std::string& name);
 
     void error(std::string_view message) noexcept override;
     void warning(std::string_view message) noexcept override;

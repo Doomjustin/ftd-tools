@@ -9,6 +9,10 @@ SpdLogger::SpdLogger()
   : logger_{ spdlog::stdout_color_mt("FTD") }
 {}
 
+SpdLogger::SpdLogger(const std::string& name)
+  : logger_{ spdlog::stdout_color_mt(name) }
+{}
+
 void SpdLogger::error(std::string_view message) noexcept
 {
     logger_->error(message);
